@@ -1,25 +1,48 @@
-#include<iostream>
-#include<graphlink/graph.hpp>
+#include <iostream>
+#include <graphlink/union_find.hpp>
 
-int main(){
-    graphlink::Graph g;
-    g.addEdge("A","B",2);
-    g.addEdge("A","C",7);
-    g.addEdge("C","D",5);
+int main()
+{
+    graphlink::UnionFind uf(6);
 
-    std::cout<<"Nodes:"<<g.nodeCount()<<'\n\n';
+    std::cout << std::boolalpha;
 
-    int a = g.idToIndex("A");
+    std::cout << "Initial Components: "
+              << uf.components() << "\n\n";
 
-    std::cout<<"Neighbours of A:\n";
+    std::cout << "3 connected to itself: "
+              << uf.connected(3,3) << "\n\n";
 
-    for(const auto& [index,weight] : g.getAdjacent(a)){
-        std::cout<<"->"<<g.indexToId(index)<<"("<<weight<<")\n";
+    uf.unite(0,1);
+    uf.unite(1,2);
+    uf.unite(2,3);
+
+    uf.unite(4,5);
+
+    std::cout << "0 and 3 connected: "
+              << uf.connected(0,3) << '\n';
+
+    std::cout << "0 and 4 connected: "
+              << uf.connected(0,4) << '\n';
+
+    std::cout << "Components: "
+              << uf.components() << '\n';
+
+    uf.unite(0,3);
+
+    std::cout << "Components after duplicate union: "
+              << uf.components() << '\n';
+
+    std::cout << "\nRoots\n";
+
+    for(int i=0;i<6;i++)
+    {
+        std::cout
+            << i
+            << " -> "
+            << uf.find(i)
+            << '\n';
     }
 
-    std::cout<<"\n Incoming Edges of D:\n";
-    int d = g.idToIndex("D");
-    for(const auto& [index,weight] : g.getReverseAdjacent(d)){
-        std::cout<<"->"<<g.indexToId(index)<<"("<<weight<<")\n";
-    }
+    return 0;
 }
