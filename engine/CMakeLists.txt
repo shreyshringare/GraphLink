@@ -16,3 +16,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Add source directories
 add_subdirectory(src)
+
+add_executable(graph_tests
+    tests/main.cpp
+)
+
+target_link_libraries(graph_tests
+    PRIVATE
+    graphlink_core
+)

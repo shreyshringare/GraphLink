@@ -7,5 +7,6 @@
 
     "files.associations": {
         "*.tpp": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "D:/Projects/SDE Projects/GraphLink/engine"
 }
