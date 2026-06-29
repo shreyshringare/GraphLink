@@ -1,18 +1,22 @@
 #pragma once
 
-#include<vector>
+#include <vector>
 
-namespace graphlink{
+namespace graphlink
+{
 
 class Graph;
 
 class BFS
 {
 public:
-    // Returns the shortest path between source and target nodes in the graph.
-    // If no path exists, returns an empty vector.
-    static std::vector<int> shortestPath(const Graph& graph, int source, int destination);
-
+    // Returns the shortest path from source to destination.
+    // Returns an empty vector if no path exists.
+    static std::vector<int> shortestPath(
+        const Graph& graph,
+        int source,
+        int destination
+    );
 };
 
-}
+} // namespace graphlink
